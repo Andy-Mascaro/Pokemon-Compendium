@@ -15,7 +15,10 @@ export default function Main() {
 
     <div>
       {pokemon.map((info) =>(
-        <p key={info.id}>{info.pokemon} </p> 
+        <div key={info.id}>
+          <p>{info.pokemon} ({info.type_1}) ({info.type_2})
+          </p>
+        </div>
       ))}
     </div>
   );
