@@ -1,12 +1,13 @@
 import React from 'react';
 
-export default function Dropdown({ types, filter, setFilter }) {
+export default function Dropdown({ types, setSelected }) {
   return (
-    <select value={filter} onChange={(e) => setFilter(e.target.value)}>
-      {types.map((type) =>(
-        <option key={type}>{type}</option>
-      ))}
-    </select>
-  
+    <div> 
+      <select onChange={(e) => setSelected(e.target.value)}>
+        {types.map((item) =>(
+          <option key={item.type}>{item.type}</option>
+        ))}
+      </select>
+    </div>
   );
 }

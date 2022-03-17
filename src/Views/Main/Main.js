@@ -5,7 +5,7 @@ import Dropdown from '../../Components/Dropdown';
 export default function Main() {
   const [types, setTypes] = useState([]);
   const [pokemon, setPokemon] = useState([]);
-  const [filter, setFilter] = useState('');
+  const [selected, setSelected] = useState('');
 
   useEffect(() => {
     const fetchData = async () => {
@@ -18,23 +18,23 @@ export default function Main() {
   }, []);
 
   useEffect(() => {
-    const fetchData = async () => {
-      const data = await fetchFilteredTypes(filter);
+    const userPick = async () => {
+      const data = await fetchFilteredTypes(selected);
       setPokemon(data);
      
     };
-    if (filter) {
-      fetchFilteredTypes();
+    if (selected) {
+      userPick();
     }
-    fetchData();
-  }, [filter]);     
+    
+  }, [selected]);     
 
 
   return (
     <div>
-      <Dropdown types={types}
-        filter={filter} 
-        setFilter={setFilter} />
+      <Dropdown 
+        types={types}
+        setSelected={setSelected} />
 
       {pokemon.map((info) =>(
         <div key={info.id}>
