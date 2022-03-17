@@ -1,27 +1,40 @@
 import { useEffect, useState } from 'react';
-import { fetchPokemon, fetchTypes } from '../../services/Pokemon';
+import { fetchFilteredTypes, fetchPokemon, fetchTypes } from '../../services/Pokemon';
 import Dropdown from '../../Components/Dropdown';
 
 export default function Main() {
   const [types, setTypes] = useState([]);
   const [pokemon, setPokemon] = useState([]);
+  const [filter, setFilter] = useState('');
 
   useEffect(() => {
     const fetchData = async () => {
       const data = await fetchPokemon();
       setPokemon(data);
-      const typeData = await fetchTypes(); 
-      setTypes(typeData); 
+      const typesData = await fetchTypes(); 
+      setTypes(typesData); 
     };
     fetchData();
   }, []);
 
-  
+  useEffect(() => {
+    const fetchData = async () => {
+      const data = await fetchFilteredTypes(filter);
+      setPokemon(data);
+     
+    };
+    if (filter) {
+      fetchFilteredTypes();
+    }
+    fetchData();
+  }, [filter]);     
 
 
   return (
     <div>
-      <Dropdown types={types} />
+      <Dropdown types={types}
+        filter={filter} 
+        setFilter={setFilter} />
 
       {pokemon.map((info) =>(
         <div key={info.id}>
