@@ -1,18 +1,19 @@
 import { useEffect, useState } from 'react';
 import { fetchFilteredTypes, fetchPokemon, fetchTypes } from '../../services/Pokemon';
 import Dropdown from '../../Components/Dropdown';
+import SearchBar from '../../Components/SearchBar';
 
 export default function Main() {
   const [types, setTypes] = useState([]);
   const [pokemon, setPokemon] = useState([]);
-  const [selected, setSelected] = useState('');
+  const [selected, setSelected] = useState('all');
 
   useEffect(() => {
     const fetchData = async () => {
       const data = await fetchPokemon();
       setPokemon(data);
       const typesData = await fetchTypes(); 
-      setTypes(typesData); 
+      setTypes(['all', ...typesData]); 
     };
     fetchData();
   }, []);
@@ -23,7 +24,7 @@ export default function Main() {
       setPokemon(data);
      
     };
-    if (selected) {
+    if (!selected) {
       userPick();
     }
     
@@ -35,6 +36,10 @@ export default function Main() {
       <Dropdown 
         types={types}
         setSelected={setSelected} />
+      <SearchBar/>
+      {/* // query={value}
+        // setQuery={SetQuery}
+        // callback={callback} /> */}
 
       {pokemon.map((info) =>(
         <div key={info.id}>
