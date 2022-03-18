@@ -9,15 +9,17 @@ export default function Main() {
   const [pokemon, setPokemon] = useState([]);
   const [selected, setSelected] = useState('all');
   const [search, setSearch] = useState('');
-//   const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const fetchData = async () => {
-    //   const data = await fetchPokemon();
-    //   setPokemon(data);
-      
       const typesData = await fetchTypes(); 
-      setTypes(['all', ...typesData]); 
+      setTypes(['all', ...typesData]);
+      
+      setTimeout(() => {
+        setLoading(false);
+      }, 1000);
+      
     };
     fetchData();
   }, []);
@@ -27,19 +29,12 @@ export default function Main() {
     const fetchData = async () => {
       const data = await fetchFilteredTypes(selected);
       setPokemon(data);
-
-    //   setLoading(false);
-     
     };
     fetchData();
   }, [selected]);
 
-//   if (loading) return <p>Loading...</p>;
-//     {
-//       searchPokemon();
-//     }
-    
-//   }, [selected]);     
+  if (loading) return <div className='loading'>Checking PokeDex</div>;
+   
   const searchPokemon = async () => {
     const data = await fetchFilteredTypes(selected, search);
     setPokemon(data);
