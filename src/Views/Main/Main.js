@@ -40,7 +40,6 @@ export default function Main() {
     setPokemon(data);
   };
 
-// if (loading) return 
   return (
     <div>
      
