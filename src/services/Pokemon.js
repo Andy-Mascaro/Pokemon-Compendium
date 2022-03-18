@@ -23,7 +23,7 @@ export async function fetchFilteredTypes(type, search) {
     params.set('pokemon', search);
   }
 
-  const resp = await fetch(`https://pokedex-alchemy.herokuapp.com/api/pokedex?${params.toString()}`);
+  const resp = await fetch(`https://pokedex-alchemy.herokuapp.com/api/pokedex?page=1&perPage=10${params.toString()}`);
   const filter = await resp.json();
   return filter.results;
 

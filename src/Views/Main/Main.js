@@ -22,20 +22,17 @@ export default function Main() {
     fetchData();
   }, []);
 
-//   const searchPokemon = async () => {
-//     const data = await fetchFilteredTypes(selected, search);
-//     setPokemon(data);
-//   };
-
+  
   useEffect(() => {
     const fetchData = async () => {
-      const data = await fetchFilteredTypes(selected, search);
+      const data = await fetchFilteredTypes(selected);
       setPokemon(data);
+
     //   setLoading(false);
      
     };
     fetchData();
-  }, [selected, search]);
+  }, [selected]);
 
 //   if (loading) return <p>Loading...</p>;
 //     {
@@ -43,15 +40,19 @@ export default function Main() {
 //     }
     
 //   }, [selected]);     
+  const searchPokemon = async () => {
+    const data = await fetchFilteredTypes(selected, search);
+    setPokemon(data);
+  };
 
-
+// if (loading) return 
   return (
     <div>
      
       <SearchBar 
         query={search}
         setQuery={setSearch}
-        callback={fetchPokemon} />
+        callback={searchPokemon} />
 
       <Dropdown 
         selected={selected}
