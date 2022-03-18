@@ -1,0 +1,19 @@
+.poke-info {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    height: 20px;
+    width: 20px;
+    margin: 2px;
+    padding: 200px;
+    
+  
+    
+}
+
+.img {
+    max-width:150px;
+    max-height: 150px;
+
+}
+

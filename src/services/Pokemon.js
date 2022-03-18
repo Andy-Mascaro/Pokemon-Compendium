@@ -1,9 +1,6 @@
 
 export async function fetchPokemon() {
-  const params = new URLSearchParams();
-  params.set('perPage', 10);
-
-  const resp = await fetch(`https://pokedex-alchemy.herokuapp.com/api/pokedex${params.toString()}`);
+  const resp = await fetch(`https://pokedex-alchemy.herokuapp.com/api/pokedex?page-1&perPage=10`);
   const data = await resp.json();
   return data.results;
  
@@ -11,15 +8,12 @@ export async function fetchPokemon() {
 
 export async function fetchTypes() {
   const resp = await fetch (`https://pokedex-alchemy.herokuapp.com/api/pokedex/types`);
-  const type = await resp.json();
-  return type;
+  const allType = await resp.json();
+  return allType.map((item) => item.type);
 } 
 
-export async function fetchFilteredTypes(type, page, search) {
+export async function fetchFilteredTypes(type, search) {
   const params = new URLSearchParams();
-
-  params.set('perPage', 10);
-  params.set('page', page);
 
   if (type !== 'all') {
     params.set('type', type);
