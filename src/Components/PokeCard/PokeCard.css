@@ -1,15 +1,23 @@
 .poke-info {
-    display: flex;
+    display:flex;
+    justify-content:space-evenly;
+    flex-wrap: wrap;
+    align-items: center;
+    flex-direction: row;
+    margin: 200px;
+}
+
+    /* display: flex;
     flex-direction: column;
     flex-wrap: wrap;
     height: 20px;
     width: 20px;
     margin: 2px;
     padding: 200px;
-    
+     */
   
     
-}
+
 
 .img {
     max-width:150px;

@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { fetchFilteredTypes, fetchPokemon, fetchTypes } from '../../services/Pokemon';
+import { fetchFilteredTypes, fetchTypes } from '../../services/Pokemon';
 import Dropdown from '../../Components/Dropdown';
 import SearchBar from '../../Components/SearchBar';
 import PokeCard from '../../Components/PokeCard/PokeCard';
