@@ -3,6 +3,8 @@ import { fetchFilteredTypes, fetchTypes } from '../../services/Pokemon';
 import Dropdown from '../../Components/Dropdown';
 import SearchBar from '../../Components/SearchBar';
 import PokeCard from '../../Components/PokeCard/PokeCard';
+import './Main.css';
+import PokeOrder from '../../Components/PokeOrder';
 
 export default function Main() {
   const [types, setTypes] = useState([]);
@@ -10,6 +12,7 @@ export default function Main() {
   const [selected, setSelected] = useState('all');
   const [search, setSearch] = useState('');
   const [loading, setLoading] = useState(true);
+  const [order, setOrder] = useState('asc');
 
   useEffect(() => {
     const fetchData = async () => {
@@ -27,13 +30,13 @@ export default function Main() {
   
   useEffect(() => {
     const fetchData = async () => {
-      const data = await fetchFilteredTypes(selected);
+      const data = await fetchFilteredTypes(selected, null, order);
       setPokemon(data);
     };
     fetchData();
-  }, [selected]);
+  }, [selected, order]);
 
-  if (loading) return <div className='loading'>Checking PokeDex</div>;
+  if (loading) return <div className='loader'></div>;
    
   const searchPokemon = async () => {
     const data = await fetchFilteredTypes(selected, search);
@@ -41,7 +44,7 @@ export default function Main() {
   };
 
   return (
-    <div>
+    <div className='bars'>
      
       <SearchBar 
         query={search}
@@ -52,6 +55,8 @@ export default function Main() {
         selected={selected}
         setSelected={setSelected}
         types={types} />
+
+      <PokeOrder setOrder={setOrder} />
         
       {pokemon.map((info) =>(
         <div key={info.id}>

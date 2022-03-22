@@ -12,8 +12,9 @@ export async function fetchTypes() {
   return allType.map((item) => item.type);
 } 
 
-export async function fetchFilteredTypes(type, search) {
+export async function fetchFilteredTypes(type, search, direction) {
   const params = new URLSearchParams();
+  params.set('direction', direction);
 
   if (type !== 'all') {
     params.set('type', type);
