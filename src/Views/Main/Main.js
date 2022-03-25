@@ -31,7 +31,6 @@ export default function Main() {
   useEffect(() => {
     const fetchData = async () => {
       const data = await fetchFilteredTypes(selected, null, order);
-      console.log(data);
       setPokemon(data);
     };
     fetchData();
