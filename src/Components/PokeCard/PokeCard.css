@@ -1,0 +1,18 @@
+.poke-info {
+    display:flex;
+    justify-content:space-evenly;
+    flex-wrap: wrap;
+    align-items: center;
+    flex-direction: row;
+    margin: 200px;
+}
+
+    
+
+
+.img {
+    max-width:150px;
+    max-height: 150px;
+
+}
+
