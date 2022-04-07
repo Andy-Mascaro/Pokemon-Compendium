@@ -1,6 +1,8 @@
 import React from 'react';
+import { usePokeContext } from '../context/PokeContext';
 
-export default function PokeOrder({ setOrder }) {
+export default function PokeOrder() {
+  const { setOrder } = usePokeContext();
   return (
     <div>
       <select onChange= {(e) => setOrder(e.target.value)}>

@@ -8,7 +8,7 @@ import PokeOrder from '../../Components/PokeOrder';
 import { usePokeContext } from '../../context/PokeContext';
 
 export default function Main() {
-  const { types, setOrder, search, setTypes, loading, setLoading, selected, order, setPokemon, pokemon } = usePokeContext();
+  const { search, setTypes, loading, setLoading, selected, order, setPokemon, pokemon } = usePokeContext();
  
   useEffect(() => {
     const fetchData = async () => {
@@ -21,7 +21,7 @@ export default function Main() {
       
     };
     fetchData();
-  }, [types, setOrder, search, setTypes, loading, setLoading, selected, order, setPokemon, pokemon]);
+  }, [setTypes, setLoading]);
 
   
   useEffect(() => {
@@ -43,16 +43,18 @@ export default function Main() {
     <div className='bars'>
      
       <SearchBar 
-        query={search}
+        // query={search}
         // setQuery={setSearch}
         callback={searchPokemon} />
 
       <Dropdown 
         // selected={selected}
         // setSelected={setSelected}
-        types={types} />
+        // types={types}    
 
-      <PokeOrder setOrder={setOrder} />
+      />
+
+      <PokeOrder />
         
       {pokemon.map((info) =>(
         <div key={info.id}>
