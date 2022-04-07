@@ -1,19 +1,15 @@
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import { fetchFilteredTypes, fetchTypes } from '../../services/Pokemon';
 import Dropdown from '../../Components/Dropdown';
 import SearchBar from '../../Components/SearchBar';
 import PokeCard from '../../Components/PokeCard/PokeCard';
 import './Main.css';
 import PokeOrder from '../../Components/PokeOrder';
+import { usePokeContext } from '../../context/PokeContext';
 
 export default function Main() {
-  const [types, setTypes] = useState([]);
-  const [pokemon, setPokemon] = useState([]);
-  const [selected, setSelected] = useState('all');
-  const [search, setSearch] = useState('');
-  const [loading, setLoading] = useState(true);
-  const [order, setOrder] = useState('asc');
-
+  const { types, setOrder, search, setTypes, loading, setLoading, selected, order, setPokemon, pokemon } = usePokeContext();
+ 
   useEffect(() => {
     const fetchData = async () => {
       const typesData = await fetchTypes(); 
@@ -25,7 +21,7 @@ export default function Main() {
       
     };
     fetchData();
-  }, []);
+  }, [types, setOrder, search, setTypes, loading, setLoading, selected, order, setPokemon, pokemon]);
 
   
   useEffect(() => {
@@ -34,7 +30,7 @@ export default function Main() {
       setPokemon(data);
     };
     fetchData();
-  }, [selected, order]);
+  }, [selected, order, setPokemon]);
 
   if (loading) return <div className='loader'></div>;
    
@@ -48,12 +44,12 @@ export default function Main() {
      
       <SearchBar 
         query={search}
-        setQuery={setSearch}
+        // setQuery={setSearch}
         callback={searchPokemon} />
 
       <Dropdown 
-        selected={selected}
-        setSelected={setSelected}
+        // selected={selected}
+        // setSelected={setSelected}
         types={types} />
 
       <PokeOrder setOrder={setOrder} />

@@ -1,6 +1,8 @@
 import React from 'react';
+import { usePokeContext } from '../context/PokeContext';
 
-export default function SearchBar({ query, setQuery, callback }) {
+export default function SearchBar({ query, callback }) {
+  const { setQuery } = usePokeContext();
   return (
     <div>
       <input value={query} onChange={(e) => setQuery(e.target.value)} />
